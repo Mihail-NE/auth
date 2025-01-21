@@ -1,0 +1,98 @@
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  padding: 50px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 40px;
+  background-color: rgba(255, 255, 255, 0.041);
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+  color: rgb(218, 209, 221);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputGroup label {
+  color: rgb(218, 209, 221);
+  font-size: 18px;
+}
+
+.input {
+  outline: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 18px;
+  border: 1px solid rgb(218, 209, 221);
+  background: transparent;
+  color: rgb(218, 209, 221);
+}
+
+.input::placeholder {
+  color: rgba(218, 209, 221, 0.5);
+}
+
+.buttons {
+  margin-top: 30px;
+}
+
+.button {
+  width: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: rgb(218, 209, 221);
+  border: none;
+}
+
+.button:hover {
+  background-color: rgb(255, 255, 255);
+  transition: 0.2s;
+  box-shadow: 0 0 5px rgb(218, 209, 221);
+}
+.span {
+  color: rgb(218, 209, 221);
+  font-size: 18px;
+}
+
+.buttonIn {
+  margin-left: 5px;
+  background-color: transparent;
+  border: none;
+  color: rgb(218, 209, 221);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+.buttonIn:hover {
+  text-decoration: underline;
+  transition: 0.2s;
+}
