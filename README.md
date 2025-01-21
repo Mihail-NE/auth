@@ -1,8 +1,24 @@
-# React + Vite
+# Secure Auth Demo 🔐
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern authentication demo showcasing clean design and secure login flow with React and Firebase.
 
-Currently, two official plugins are available:
+## Quick Test ⚡
+Use either:
+- Create your own account with email
+- Test account:
+  - Email: mharkunov@mail.ru
+  - Password: password123
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Core Features 🚀
+- Email/Password Authentication
+- Protected Routes
+- Persistent Sessions
+- Responsive Design
+- Modern UI/UX
+
+## Tech Stack 💻
+- React 18
+- Firebase Auth
+- React Router v7
+- Vite
+- CSS Modules
