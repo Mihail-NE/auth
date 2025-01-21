@@ -17,12 +17,7 @@ const SignIn = () => {
         e.preventDefault();
         try {
             await setPersistence(auth, browserLocalPersistence);
-            const userCredential = await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-            console.log("Успешный вход:", userCredential.user);
+            await signInWithEmailAndPassword(auth, email, password);
             navigate("/dashboard");
         } catch (error) {
             console.error("Ошибка входа:", error.message);
@@ -32,7 +27,7 @@ const SignIn = () => {
     return (
         <div className={s.container}>
             <div className={s.content}>
-                <h1 className={s.title}>Вход</h1>
+                <h1 className={s.title}>Login</h1>
                 <form onSubmit={handleSubmit} className={s.form}>
                     <input
                         className={s.input}
@@ -46,10 +41,10 @@ const SignIn = () => {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Пароль"
+                        placeholder="Password"
                     />
                     <button className={s.button} type="submit">
-                        Войти
+                        Login
                     </button>
                 </form>
                 <div className={s.buttons}>

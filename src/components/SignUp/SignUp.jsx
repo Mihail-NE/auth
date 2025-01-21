@@ -12,12 +12,7 @@ const SignUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const userCredential = await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-            console.log("Успешная регистрация:", userCredential.user);
+            await createUserWithEmailAndPassword(auth, email, password);
             navigate("/dashboard");
         } catch (error) {
             console.error("Ошибка регистрации:", error.message);
