@@ -7,15 +7,45 @@ import s from "./SignUp.module.css";
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
+
+        if (!validateEmail(email)) {
+            setError("Please enter a valid email address.");
+            return;
+        }
+
+        if (password.length < 6) {
+            setError("Password must be at least 6 characters long.");
+            return;
+        }
+
         try {
             await createUserWithEmailAndPassword(auth, email, password);
             navigate("/dashboard");
         } catch (error) {
-            console.error("Ошибка регистрации:", error.message);
+            switch (error.code) {
+                case "auth/email-already-in-use":
+                    setError("An account with this email already exists.");
+                    break;
+                case "auth/invalid-email":
+                    setError("Invalid email address.");
+                    break;
+                case "auth/weak-password":
+                    setError("Password is too weak.");
+                    break;
+                default:
+                    setError("Registration error: " + error.message);
+            }
         }
     };
 
@@ -23,7 +53,7 @@ const SignUp = () => {
         <div className={s.container}>
             <div className={s.content}>
                 <h2 className={s.title}>Create Account</h2>
-
+                {error && <div className={s.error}>{error}</div>}
                 <form onSubmit={handleSubmit} className={s.form}>
                     <div className={s.inputGroup}>
                         <label htmlFor="email">Email</label>
@@ -60,7 +90,7 @@ const SignUp = () => {
                 </form>
                 <div className={s.buttons}>
                     <span className={s.span}>
-                        Have account?{" "}
+                        Have an account?{" "}
                         <button
                             className={s.buttonIn}
                             onClick={() => navigate("/login")}

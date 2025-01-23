@@ -11,16 +11,39 @@ import s from "./SignIn.module.css";
 const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    const validateEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError("");
+
+        if (!validateEmail(email)) {
+            setError("Please enter a valid email address.");
+            return;
+        }
+
         try {
             await setPersistence(auth, browserLocalPersistence);
             await signInWithEmailAndPassword(auth, email, password);
             navigate("/dashboard");
         } catch (error) {
-            console.error("Ошибка входа:", error.message);
+            switch (error.code) {
+                case "auth/user-not-found":
+                    setError("No account found with this email.");
+                    break;
+                case "auth/invalid-credential":
+                    setError("Incorrect password or email.");
+                    break;
+
+                default:
+                    setError("Login error: " + error.message);
+            }
         }
     };
 
@@ -28,6 +51,7 @@ const SignIn = () => {
         <div className={s.container}>
             <div className={s.content}>
                 <h1 className={s.title}>Login</h1>
+                {error && <div className={s.error}>{error}</div>}
                 <form onSubmit={handleSubmit} className={s.form}>
                     <input
                         className={s.input}
@@ -54,7 +78,7 @@ const SignIn = () => {
                             className={s.buttonIn}
                             onClick={() => navigate("/signup")}
                         >
-                            Crete account
+                            Create account
                         </button>
                     </span>
                 </div>

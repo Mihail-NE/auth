@@ -7,7 +7,7 @@ import Dashboard from "../components/Dashboard/Dashboard";
 
 const App = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/auth">
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<SignIn />} />
